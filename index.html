@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ---------- Reset ---------- */
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -21,499 +20,177 @@
   img, svg { display: block; max-width: 100%; }
   button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
   h1, h2, h3, p { margin: 0; }
-
-  /* ---------- Tokens ---------- */
   :root{
-    --ink: #14161c;
-    --ink-soft: #4a4d57;
-    --paper: #f5f4ef;
-    --paper-raised: #ffffff;
-    --line: rgba(20,22,28,0.12);
-    --watermark: rgba(20,22,28,0.05);
-    --accent: #5647ec;
-    --accent-dark: #4636c9;
-    --accent-soft: #ece9fd;
-    --coral: #ff6a3d;
-    --coral-soft: #ffe9e0;
-    --whatsapp: #25a25a;
-    --muted: #6f7280;
-    --max: 1120px;
-    --header-h: 84px;
+    --ink: #14161c; --ink-soft: #4a4d57; --paper: #f5f4ef; --paper-raised: #ffffff;
+    --line: rgba(20,22,28,0.12); --watermark: rgba(20,22,28,0.05);
+    --accent: #5647ec; --accent-dark: #4636c9; --accent-soft: #ece9fd;
+    --coral: #ff6a3d; --coral-soft: #ffe9e0; --whatsapp: #25a25a;
+    --muted: #6f7280; --max: 1120px; --header-h: 84px;
   }
-
   @media (prefers-color-scheme: dark){
     :root{
-      --ink: #f2f1ec;
-      --ink-soft: #c7c9d3;
-      --paper: #101114;
-      --paper-raised: #17181d;
-      --line: rgba(242,241,236,0.14);
-      --watermark: rgba(242,241,236,0.05);
-      --accent: #9184ff;
-      --accent-dark: #a79cff;
-      --accent-soft: rgba(145,132,255,0.16);
-      --coral: #ff8a63;
-      --coral-soft: rgba(255,138,99,0.14);
-      --whatsapp: #34c579;
-      --muted: #9a9da6;
+      --ink: #f2f1ec; --ink-soft: #c7c9d3; --paper: #101114; --paper-raised: #17181d;
+      --line: rgba(242,241,236,0.14); --watermark: rgba(242,241,236,0.05);
+      --accent: #9184ff; --accent-dark: #a79cff; --accent-soft: rgba(145,132,255,0.16);
+      --coral: #ff8a63; --coral-soft: rgba(255,138,99,0.14); --whatsapp: #34c579; --muted: #9a9da6;
     }
   }
-
-  /* ---------- Base ---------- */
-  body{
-    background: var(--paper);
-    color: var(--ink-soft);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, .brand-name{
-    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  section[id]{ scroll-margin-top: var(--header-h); }
-  html{ scroll-behavior: smooth; }
-  ::selection{ background: var(--accent); color: #fff; }
-
-  :focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  .wrap{
-    max-width: var(--max);
-    margin-inline: auto;
-    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
-  }
-
-  .visually-hidden{
-    position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-  }
-
-  .skip-link{
-    position: absolute; left: -999px; top: 1rem;
-    background: var(--ink); color: var(--paper);
-    padding: .75rem 1.1rem; border-radius: 8px; z-index: 200;
-    font-weight: 600;
-  }
-  .skip-link:focus{ left: 1rem; }
-
-  /* ---------- Buttons ---------- */
-  .btn{
-    display: inline-flex; align-items: center; gap: .5rem;
-    padding: .85rem 1.6rem; border-radius: 999px;
-    font-weight: 600; font-size: .95rem;
-    border: 1px solid transparent;
-    transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
-  }
-  .btn-primary{ background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .btn-primary:hover{ background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
-  .btn-outline{ background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn-outline:hover{ border-color: var(--ink); transform: translateY(-2px); }
-
-  /* ---------- Header ---------- */
-  .site-header{
-    position: sticky; top: 0; z-index: 100;
-    height: var(--header-h);
-    display: flex; align-items: center;
-    background: var(--paper);
-    background: color-mix(in srgb, var(--paper) 88%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .header-inner{
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1rem;
-  }
-  .brand{ display: flex; align-items: center; gap: .65rem; }
-  .brand-mark{
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px; border-radius: 10px;
-    border: 1.5px solid var(--ink);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700; font-size: .9rem; color: var(--ink);
-    flex-shrink: 0;
-  }
-  .brand-name{ font-weight: 600; font-size: 1rem; white-space: nowrap; }
-
-  .nav-toggle{
-    display: none; flex-direction: column; gap: 5px;
-    padding: .5rem; border-radius: 8px;
-  }
-  .nav-toggle-bar{
-    width: 22px; height: 2px; background: var(--ink);
-    transition: transform .2s ease, opacity .2s ease;
-  }
-  .nav-toggle.is-active .nav-toggle-bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-  .nav-toggle.is-active .nav-toggle-bar:nth-child(2){ opacity: 0; }
-  .nav-toggle.is-active .nav-toggle-bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-
-  .site-nav{ display: flex; align-items: center; gap: clamp(1.25rem, 2.5vw, 2.25rem); }
-  .site-nav a:not(.nav-cta){
-    font-weight: 500; font-size: .95rem; color: var(--ink-soft);
-    padding-block: .25rem; border-bottom: 1px solid transparent;
-    transition: color .2s ease, border-color .2s ease;
-  }
-  .site-nav a:not(.nav-cta):hover{ color: var(--ink); border-color: var(--ink); }
-  .nav-cta{
-    background: var(--ink); color: var(--paper);
-    padding: .55rem 1.15rem; border-radius: 999px;
-    font-weight: 600; font-size: .9rem;
-    transition: background-color .2s ease;
-  }
-  .nav-cta:hover{ background: var(--accent); }
-
-  /* ---------- Hero ---------- */
-  .hero{ position: relative; overflow: hidden; padding-block: clamp(3.5rem, 10vw, 6.5rem); }
-  .hero::before{
-    content: "";
-    position: absolute; inset: 0;
-    background-image: radial-gradient(var(--line) 1px, transparent 1px);
-    background-size: 24px 24px;
-    -webkit-mask-image: linear-gradient(to bottom, black, transparent 80%);
-            mask-image: linear-gradient(to bottom, black, transparent 80%);
-    pointer-events: none;
-  }
-  .hero-inner{ position: relative; display: grid; grid-template-columns: 1fr; }
-  .hero-content{ position: relative; z-index: 1; max-width: 640px; }
-  .kicker{
-    display: inline-flex; align-items: center; gap: .5rem;
-    color: var(--accent); font-weight: 600; font-size: .95rem;
-    margin-bottom: 1.1rem;
-  }
-  .kicker-dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
-  .hero-title{
-    font-size: clamp(2.6rem, 7vw, 5rem);
-    line-height: .98; font-weight: 700; letter-spacing: -0.02em;
-  }
-  .hero-lede{
-    margin-top: 1.5rem; font-size: clamp(1.05rem, 2vw, 1.2rem);
-    max-width: 42ch; color: var(--ink-soft);
-  }
-  .hero-actions{ display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2.2rem; }
-
-  .hero-mark{
-    position: absolute; right: clamp(-30px, 4vw, 60px); top: 50%;
-    transform: translateY(-52%);
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-    font-size: clamp(160px, 24vw, 360px); line-height: 1;
-    color: var(--watermark);
-    pointer-events: none; user-select: none; z-index: 0;
-  }
-
+  body{ background: var(--paper); color: var(--ink-soft); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3,.brand-name{ font-family: 'Space Grotesk', 'Segoe UI', sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+  section[id]{ scroll-margin-top: var(--header-h); } html{ scroll-behavior: smooth; } ::selection{ background: var(--accent); color: #fff; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+ .wrap{ max-width: var(--max); margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+ .visually-hidden{ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+ .skip-link{ position: absolute; left: -999px; top: 1rem; background: var(--ink); color: var(--paper); padding:.75rem 1.1rem; border-radius: 8px; z-index: 200; font-weight: 600; }.skip-link:focus{ left: 1rem; }
+ .btn{ display: inline-flex; align-items: center; gap:.5rem; padding:.85rem 1.6rem; border-radius: 999px; font-weight: 600; font-size:.95rem; border: 1px solid transparent; transition: transform.2s ease, background-color.2s ease, border-color.2s ease; }
+ .btn-primary{ background: var(--ink); color: var(--paper); border-color: var(--ink); }.btn-primary:hover{ background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+ .btn-outline{ background: transparent; color: var(--ink); border-color: var(--line); }.btn-outline:hover{ border-color: var(--ink); transform: translateY(-2px); }
+ .site-header{ position: sticky; top: 0; z-index: 100; height: var(--header-h); display: flex; align-items: center; background: var(--paper); background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+ .header-inner{ display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+ .brand{ display: flex; align-items: center; gap:.65rem; }
+ .brand-mark{ display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; border: 1.5px solid var(--ink); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size:.9rem; color: var(--ink); flex-shrink: 0; }
+ .brand-name{ font-weight: 600; font-size: 1rem; white-space: nowrap; }
+ .nav-toggle{ display: none; flex-direction: column; gap: 5px; padding:.5rem; border-radius: 8px; }.nav-toggle-bar{ width: 22px; height: 2px; background: var(--ink); transition: transform.2s ease, opacity.2s ease; }
+ .nav-toggle.is-active.nav-toggle-bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }.nav-toggle.is-active.nav-toggle-bar:nth-child(2){ opacity: 0; }.nav-toggle.is-active.nav-toggle-bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+ .site-nav{ display: flex; align-items: center; gap: clamp(1.25rem, 2.5vw, 2.25rem); }
+ .site-nav a:not(.nav-cta){ font-weight: 500; font-size:.95rem; color: var(--ink-soft); padding-block:.25rem; border-bottom: 1px solid transparent; transition: color.2s ease, border-color.2s ease; }
+ .site-nav a:not(.nav-cta):hover{ color: var(--ink); border-color: var(--ink); }
+ .nav-cta{ background: var(--ink); color: var(--paper); padding:.55rem 1.15rem; border-radius: 999px; font-weight: 600; font-size:.9rem; transition: background-color.2s ease; }.nav-cta:hover{ background: var(--accent); }
+ .hero{ position: relative; overflow: hidden; padding-block: clamp(3.5rem, 10vw, 6.5rem); }
+ .hero::before{ content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 24px 24px; -webkit-mask-image: linear-gradient(to bottom, black, transparent 80%); mask-image: linear-gradient(to bottom, black, transparent 80%); pointer-events: none; }
+ .hero-inner{ position: relative; display: grid; grid-template-columns: 1fr; }.hero-content{ position: relative; z-index: 1; max-width: 640px; }
+ .kicker{ display: inline-flex; align-items: center; gap:.5rem; color: var(--accent); font-weight: 600; font-size:.95rem; margin-bottom: 1.1rem; }.kicker-dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+ .hero-title{ font-size: clamp(2.6rem, 7vw, 5rem); line-height:.98; font-weight: 700; letter-spacing: -0.02em; }
+ .hero-lede{ margin-top: 1.5rem; font-size: clamp(1.05rem, 2vw, 1.2rem); max-width: 42ch; color: var(--ink-soft); }
+ .hero-actions{ display: flex; flex-wrap: wrap; gap:.9rem; margin-top: 2.2rem; }
+ .hero-mark{ position: absolute; right: clamp(-30px, 4vw, 60px); top: 50%; transform: translateY(-52%); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(160px, 24vw, 360px); line-height: 1; color: var(--watermark); pointer-events: none; user-select: none; z-index: 0; }
   @keyframes rise-in{ from{ opacity: 0; transform: translateY(14px); } to{ opacity: 1; transform: translateY(0); } }
-  .hero-content > *{ animation: rise-in .7s ease both; }
-  .hero-content > *:nth-child(1){ animation-delay: .05s; }
-  .hero-content > *:nth-child(2){ animation-delay: .15s; }
-  .hero-content > *:nth-child(3){ animation-delay: .28s; }
-  .hero-content > *:nth-child(4){ animation-delay: .4s; }
-
-  /* ---------- Section heads ---------- */
-  .section-head{ max-width: 620px; margin-bottom: clamp(2rem, 5vw, 3rem); }
-  .section-head h2{ font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 600; }
-  .section-head p{ margin-top: .75rem; color: var(--muted); font-size: 1.05rem; }
-
-  /* ---------- About ---------- */
-  .about{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
-  .about-grid{
-    display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem);
-    align-items: start;
-  }
-  .about-copy{ font-size: 1.15rem; line-height: 1.75; color: var(--ink-soft); }
-  .about-facts{ display: flex; flex-direction: column; gap: 1.25rem; }
-  .about-facts li{
-    display: flex; flex-direction: column; gap: .25rem;
-    padding-bottom: 1.1rem; border-bottom: 1px solid var(--line);
-    color: var(--ink); font-weight: 600;
-  }
-  .about-facts li:last-child{ border-bottom: none; padding-bottom: 0; }
-  .about-facts span{ font-weight: 500; color: var(--muted); font-size: .9rem; }
-
-  /* ---------- Skills ---------- */
-  .skills{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
-  .skills-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .skill-card{
-    padding: 1.75rem; border: 1px solid var(--line); border-radius: 16px;
-    background: var(--paper-raised);
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .skill-card:hover{ border-color: var(--accent); transform: translateY(-3px); }
-  .skill-card svg{ width: 34px; height: 34px; color: var(--accent); margin-bottom: 1.1rem; }
-  .skill-card h3{ font-size: 1.15rem; font-weight: 600; margin-bottom: .5rem; }
-  .skill-card p{ font-size: .96rem; color: var(--muted); line-height: 1.6; }
-
-  /* ---------- Work ---------- */
-  .work{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
-  .work-list{ display: flex; flex-direction: column; gap: 1.5rem; }
-  .work-card{
-    display: grid; grid-template-columns: 280px 1fr; gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: center; padding: 1.75rem; border: 1px solid var(--line); border-radius: 18px;
-    background: var(--paper-raised);
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .work-card:hover{ border-color: var(--accent); transform: translateY(-3px); }
-  .work-visual{
-    border-radius: 12px; overflow: hidden; background: var(--paper);
-    border: 1px solid var(--line); aspect-ratio: 16 / 11;
-  }
-  .work-visual svg{ width: 100%; height: 100%; }
-  .work-tag{
-    display: inline-block; font-size: .8rem; font-weight: 600;
-    color: var(--accent); background: var(--accent-soft);
-    padding: .3rem .7rem; border-radius: 999px; margin-bottom: .75rem;
-  }
-  .work-body h3{ font-size: 1.4rem; font-weight: 600; margin-bottom: .6rem; }
-  .work-body p{ color: var(--muted); font-size: 1rem; max-width: 52ch; }
-  .work-link{
-    display: inline-flex; align-items: center; gap: .4rem;
-    margin-top: 1.1rem; font-weight: 600; color: var(--ink);
-    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
-  }
-  .work-link svg{ width: 15px; height: 15px; }
-  .work-link:hover{ color: var(--accent); border-color: var(--accent); }
-
-  /* ---------- Contact ---------- */
-  .contact{
-    padding-block: clamp(3.5rem, 9vw, 6rem);
-    background: var(--ink); color: var(--paper);
-    border-radius: 28px;
-    margin: clamp(1rem, 4vw, 2rem) auto;
-    max-width: calc(var(--max) + 2.5rem);
-  }
-  .contact .wrap{ max-width: var(--max); }
-  .contact .section-head h2, .contact .section-head p{ color: var(--paper); }
-  .contact .section-head p{ color: rgba(245,244,239,0.65); }
-  .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  .contact-card{
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1.5rem; border-radius: 16px;
-    border: 1px solid rgba(245,244,239,0.18);
-    transition: border-color .2s ease, transform .2s ease, background-color .2s ease;
-  }
-  .contact-card:hover{ border-color: rgba(245,244,239,0.5); transform: translateY(-3px); }
-  .contact-icon{
-    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .contact-icon svg{ width: 22px; height: 22px; }
-  .contact-icon.email{ background: var(--accent-soft); color: var(--accent-dark); }
-  .contact-icon.whatsapp{ background: rgba(52, 197, 121, 0.18); color: var(--whatsapp); }
-  .contact-text{ display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
-  .contact-label{ font-size: .8rem; color: rgba(245,244,239,0.55); font-weight: 500; }
-  .contact-value{ font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
-
-  /* ---------- Footer ---------- */
-  .site-footer{ padding-block: 2.5rem; }
-  .footer-inner{
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-    gap: 1rem; font-size: .9rem; color: var(--muted);
-  }
-  .footer-inner nav{ display: flex; gap: 1.5rem; }
-  .footer-inner nav a:hover{ color: var(--ink); }
-
-  /* ---------- Responsive ---------- */
+ .hero-content > *{ animation: rise-in.7s ease both; }.hero-content > *:nth-child(1){ animation-delay:.05s; }.hero-content > *:nth-child(2){ animation-delay:.15s; }.hero-content > *:nth-child(3){ animation-delay:.28s; }.hero-content > *:nth-child(4){ animation-delay:.4s; }
+ .section-head{ max-width: 620px; margin-bottom: clamp(2rem, 5vw, 3rem); }.section-head h2{ font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 600; }.section-head p{ margin-top:.75rem; color: var(--muted); font-size: 1.05rem; }
+ .about{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
+ .about-grid{ display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+ .about-copy{ font-size: 1.15rem; line-height: 1.75; color: var(--ink-soft); }
+ .about-facts{ display: flex; flex-direction: column; gap: 1.25rem; }.about-facts li{ display: flex; flex-direction: column; gap:.25rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 600; }.about-facts li:last-child{ border-bottom: none; padding-bottom: 0; }.about-facts span{ font-weight: 500; color: var(--muted); font-size:.9rem; }
+ .skills{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
+ .skills-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+ .skill-card{ padding: 1.75rem; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-raised); transition: border-color.2s ease, transform.2s ease; }
+ .skill-card:hover{ border-color: var(--accent); transform: translateY(-3px); }
+ .skill-card svg{ width: 34px; height: 34px; color: var(--accent); margin-bottom: 1.1rem; }.skill-card h3{ font-size: 1.15rem; font-weight: 600; margin-bottom:.5rem; }.skill-card p{ font-size:.96rem; color: var(--muted); line-height: 1.6; }
+ .work{ padding-block: clamp(3rem, 8vw, 5.5rem); border-top: 1px solid var(--line); }
+ .work-list{ display: flex; flex-direction: column; gap: 1.5rem; }
+ .work-card{ display: grid; grid-template-columns: 280px 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; padding: 1.75rem; border: 1px solid var(--line); border-radius: 18px; background: var(--paper-raised); transition: border-color.2s ease, transform.2s ease; }
+ .work-card:hover{ border-color: var(--accent); transform: translateY(-3px); }
+ .work-visual{ border-radius: 12px; overflow: hidden; background: var(--paper); border: 1px solid var(--line); aspect-ratio: 16 / 11; }
+ .work-visual svg{ width: 100%; height: 100%; }
+ .work-tag{ display: inline-block; font-size:.8rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding:.3rem.7rem; border-radius: 999px; margin-bottom:.75rem; }
+ .work-body h3{ font-size: 1.4rem; font-weight: 600; margin-bottom:.6rem; }.work-body p{ color: var(--muted); font-size: 1rem; max-width: 52ch; }
+ .work-link{ display: inline-flex; align-items: center; gap:.4rem; margin-top: 1.1rem; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+ .work-link svg{ width: 15px; height: 15px; }.work-link:hover{ color: var(--accent); border-color: var(--accent); }
+ .contact{ padding-block: clamp(3.5rem, 9vw, 6rem); background: var(--ink); color: var(--paper); border-radius: 28px; margin: clamp(1rem, 4vw, 2rem) auto; max-width: calc(var(--max) + 2.5rem); }
+ .contact.wrap{ max-width: var(--max); }.contact.section-head h2,.contact.section-head p{ color: var(--paper); }.contact.section-head p{ color: rgba(245,244,239,0.65); }
+ .contact-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+ .contact-card{ display: flex; align-items: center; gap: 1rem; padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(245,244,239,0.18); transition: border-color.2s ease, transform.2s ease, background-color.2s ease; }
+ .contact-card:hover{ border-color: rgba(245,244,239,0.5); transform: translateY(-3px); }
+ .contact-icon{ width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+ .contact-icon svg{ width: 22px; height: 22px; }.contact-icon.email{ background: var(--accent-soft); color: var(--accent-dark); }.contact-icon.whatsapp{ background: rgba(52, 197, 121, 0.18); color: var(--whatsapp); }
+ .contact-text{ display: flex; flex-direction: column; gap:.2rem; min-width: 0; }.contact-label{ font-size:.8rem; color: rgba(245,244,239,0.55); font-weight: 500; }.contact-value{ font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
+ .site-footer{ padding-block: 2.5rem; }.footer-inner{ display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; font-size:.9rem; color: var(--muted); }.footer-inner nav{ display: flex; gap: 1.5rem; }.footer-inner nav a:hover{ color: var(--ink); }
   @media (max-width: 860px){
-    .nav-toggle{ display: flex; }
-    .site-nav{
-      display: none; position: absolute; top: var(--header-h); left: 0; right: 0;
-      flex-direction: column; align-items: flex-start; gap: 0;
-      background: var(--paper-raised); border-bottom: 1px solid var(--line);
-      padding: .5rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem;
-    }
-    .site-nav.is-open{ display: flex; }
-    .site-nav a:not(.nav-cta){ width: 100%; padding-block: .85rem; border-bottom: 1px solid var(--line); }
-    .nav-cta{ margin-top: 1rem; }
-
-    .about-grid{ grid-template-columns: 1fr; }
-    .skills-grid{ grid-template-columns: 1fr 1fr; }
-    .work-card{ grid-template-columns: 1fr; }
-    .work-visual{ aspect-ratio: 16 / 9; }
-    .contact-grid{ grid-template-columns: 1fr; }
-    .hero-mark{ opacity: .6; }
+   .nav-toggle{ display: flex; }.site-nav{ display: none; position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--paper-raised); border-bottom: 1px solid var(--line); padding:.5rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem; }.site-nav.is-open{ display: flex; }
+   .site-nav a:not(.nav-cta){ width: 100%; padding-block:.85rem; border-bottom: 1px solid var(--line); }.nav-cta{ margin-top: 1rem; }
+   .about-grid{ grid-template-columns: 1fr; }.skills-grid{ grid-template-columns: 1fr 1fr; }.work-card{ grid-template-columns: 1fr; }.work-visual{ aspect-ratio: 16 / 9; }.contact-grid{ grid-template-columns: 1fr; }.hero-mark{ opacity:.6; }
   }
-
-  @media (max-width: 560px){
-    .brand-name{ display: none; }
-    .skills-grid{ grid-template-columns: 1fr; }
-    .hero-actions .btn{ flex: 1 1 auto; justify-content: center; }
-    .contact{ border-radius: 20px; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ animation: none !important; transition: none !important; }
-    html{ scroll-behavior: auto !important; }
-  }
+  @media (max-width: 560px){.brand-name{ display: none; }.skills-grid{ grid-template-columns: 1fr; }.hero-actions.btn{ flex: 1 1 auto; justify-content: center; }.contact{ border-radius: 20px; } }
+  @media (prefers-reduced-motion: reduce){ *{ animation: none!important; transition: none!important; } html{ scroll-behavior: auto!important; } }
 </style>
 </head>
 <body>
-
 <a class="skip-link" href="#main">Skip to content</a>
-
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Faaiz Farrukh Farooqui, back to top">
       <span class="brand-mark" aria-hidden="true">FF</span>
       <span class="brand-name">Faaiz Farrukh Farooqui</span>
     </a>
-
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
       <span class="visually-hidden">Toggle menu</span>
     </button>
-
     <nav class="site-nav" id="nav-links" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
-      <a class="nav-cta" href="#contact">Let's talk</a>
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a class="nav-cta" href="#contact">Let's talk</a>
     </nav>
   </div>
 </header>
-
 <main id="main">
-
   <section class="hero" id="top">
     <div class="wrap hero-inner">
       <div class="hero-content">
         <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>Full Stack Developer</p>
         <h1 class="hero-title">Faaiz Farrukh<br>Farooqui</h1>
         <p class="hero-lede">I build websites end to end — clean, working interfaces on the front, and solid systems running behind them.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#work">See my work</a>
-          <a class="btn btn-outline" href="#contact">Get in touch</a>
-        </div>
+        <div class="hero-actions"><a class="btn btn-primary" href="#work">See my work</a><a class="btn btn-outline" href="#contact">Get in touch</a></div>
       </div>
     </div>
     <span class="hero-mark" aria-hidden="true">FF</span>
   </section>
-
   <section class="about" id="about" aria-labelledby="about-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="about-title">About</h2>
-      </div>
+      <div class="section-head"><h2 id="about-title">About</h2></div>
       <div class="about-grid">
-        <p class="about-copy">
-          I'm Faaiz Farrukh Farooqui, a full stack developer who builds complete websites —
-          from the interface people click through to the systems running quietly behind it.
-          My work spans both frontend and backend development, and every project starts with
-          the same goal: a clean, functional site that works exactly the way it should.
-          Paintkari By Faiza brings an art gallery online, and FLAURA shows how a product
-          can be presented with clarity and confidence.
-        </p>
-        <ul class="about-facts">
-          <li><span>Role</span>Full Stack Developer</li>
-          <li><span>Focus</span>Frontend &amp; Backend Development</li>
-          <li><span>Recent work</span>An online art gallery and a product website</li>
-        </ul>
+        <p class="about-copy">I'm Faaiz Farrukh Farooqui, a full stack developer who builds complete websites — from the interface people click through to the systems running quietly behind it. My work spans both frontend and backend development, and every project starts with the same goal: a clean, functional site that works exactly the way it should. Paintkari By Faiza brings an art gallery online, FLAURA shows how a product can be presented with clarity, and HabitVerse turns daily habits into a gamified productivity system.</p>
+        <ul class="about-facts"><li><span>Role</span>Full Stack Developer</li><li><span>Focus</span>Frontend & Backend Development</li><li><span>Recent work</span>Art gallery, product site & habit tracker</li></ul>
       </div>
     </div>
   </section>
-
   <section class="skills" id="skills" aria-labelledby="skills-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="skills-title">What I do</h2>
-        <p>The two sides of building a website, handled together.</p>
-      </div>
+      <div class="section-head"><h2 id="skills-title">What I do</h2><p>The two sides of building a website, handled together.</p></div>
       <div class="skills-grid">
-        <article class="skill-card">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="5" y="8" width="30" height="24" rx="3"/>
-            <line x1="5" y1="15" x2="35" y2="15"/>
-            <line x1="11" y1="21" x2="11" y2="27"/>
-            <line x1="17" y1="21" x2="29" y2="21"/>
-            <line x1="17" y1="27" x2="24" y2="27"/>
-          </svg>
-          <h3>Frontend Development</h3>
-          <p>Building the interfaces people actually use — laid out clearly, and responsive on every screen.</p>
-        </article>
-        <article class="skill-card">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="7" y="6" width="26" height="10" rx="2"/>
-            <rect x="7" y="24" width="26" height="10" rx="2"/>
-            <circle cx="13" cy="11" r="0.6" fill="currentColor" stroke="none"/>
-            <circle cx="13" cy="29" r="0.6" fill="currentColor" stroke="none"/>
-            <line x1="20" y1="16" x2="20" y2="24"/>
-          </svg>
-          <h3>Backend Development</h3>
-          <p>Building the logic and systems that keep a website running correctly behind the scenes.</p>
-        </article>
-        <article class="skill-card">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="20" cy="20" r="14"/>
-            <line x1="6" y1="20" x2="34" y2="20"/>
-            <path d="M20 6c4 4 6 9 6 14s-2 10-6 14c-4-4-6-9-6-14s2-10 6-14z"/>
-          </svg>
-          <h3>Website Development</h3>
-          <p>Taking a project from a first line of code to a live, working website — start to finish.</p>
-        </article>
+        <article class="skill-card"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="30" height="24" rx="3"/><line x1="5" y1="15" x2="35" y2="15"/><line x1="11" y1="21" x2="11" y2="27"/><line x1="17" y1="21" x2="29" y2="21"/><line x1="17" y1="27" x2="24" y2="27"/></svg><h3>Frontend Development</h3><p>Building the interfaces people actually use — laid out clearly, and responsive on every screen.</p></article>
+        <article class="skill-card"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="6" width="26" height="10" rx="2"/><rect x="7" y="24" width="26" height="10" rx="2"/><circle cx="13" cy="11" r="0.6" fill="currentColor" stroke="none"/><circle cx="13" cy="29" r="0.6" fill="currentColor" stroke="none"/><line x1="20" y1="16" x2="20" y2="24"/></svg><h3>Backend Development</h3><p>Building the logic and systems that keep a website running correctly behind the scenes.</p></article>
+        <article class="skill-card"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="14"/><line x1="6" y1="20" x2="34" y2="20"/><path d="M20 6c4 4 6 9 6 14s-2 10-6 14c-4-4-6-9-6-14s2-10 6-14z"/></svg><h3>Website Development</h3><p>Taking a project from a first line of code to a live, working website — start to finish.</p></article>
       </div>
     </div>
   </section>
-
   <section class="work" id="work" aria-labelledby="work-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="work-title">Selected work</h2>
-        <p>A couple of things I've built recently.</p>
-      </div>
+      <div class="section-head"><h2 id="work-title">Selected work</h2><p>A couple of things I've built recently.</p></div>
       <div class="work-list">
-
         <article class="work-card">
-          <div class="work-visual">
-            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="200" height="140" fill="var(--paper)"/>
-              <rect x="14" y="18" width="52" height="74" rx="2" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
-              <rect x="82" y="32" width="42" height="58" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
-              <rect x="140" y="12" width="48" height="86" rx="2" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="1.5"/>
-              <line x1="10" y1="112" x2="190" y2="112" stroke="var(--line)" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="work-body">
-            <span class="work-tag">Art Gallery</span>
-            <h3>Paintkari By Faiza</h3>
-            <p>An online art gallery built to showcase and present artwork with a clean, gallery-like browsing experience.</p>
-            <a class="work-link" href="https://paintkaribyfaiza.vercel.app/" target="_blank" rel="noopener noreferrer">
-              Visit site
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/>
-                <path d="M14 4h6v6"/>
-                <path d="M10 14L20 4"/>
-              </svg>
-            </a>
-          </div>
+          <div class="work-visual"><svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="200" height="140" fill="var(--paper)"/><rect x="14" y="18" width="52" height="74" rx="2" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/><rect x="82" y="32" width="42" height="58" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.5"/><rect x="140" y="12" width="48" height="86" rx="2" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="1.5"/><line x1="10" y1="112" x2="190" y2="112" stroke="var(--line)" stroke-width="2"/></svg></div>
+          <div class="work-body"><span class="work-tag">Art Gallery</span><h3>Paintkari By Faiza</h3><p>An online art gallery built to showcase and present artwork with a clean, gallery-like browsing experience.</p><a class="work-link" href="https://paintkaribyfaiza.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/><path d="M14 4h6v6"/><path d="M10 14L20 4"/></svg></a></div>
+        </article>
+        <article class="work-card">
+          <div class="work-visual"><svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="200" height="140" fill="var(--paper)"/><line x1="16" y1="122" x2="184" y2="122" stroke="var(--line)" stroke-width="2"/><path d="M100 120 C100 90 82 70 62 42" stroke="var(--ink)" stroke-width="1.6" fill="none"/><path d="M100 120 C100 88 118 62 138 30" stroke="var(--accent)" stroke-width="1.6" fill="none"/><ellipse cx="62" cy="38" rx="15" ry="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4" transform="rotate(-28 62 38)"/><ellipse cx="138" cy="27" rx="17" ry="9" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="1.4" transform="rotate(24 138 27)"/></svg></div>
+          <div class="work-body"><span class="work-tag">Commercial Website</span><h3>FLAURA</h3><p>A commercial product website sample, built to show how a product can be presented online with clarity.</p><a class="work-link" href="https://flaura-three.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/><path d="M14 4h6v6"/><path d="M10 14L20 4"/></svg></a></div>
         </article>
 
+        <!-- NEW PROJECT: HABITVERSE -->
         <article class="work-card">
           <div class="work-visual">
             <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="200" height="140" fill="var(--paper)"/>
-              <line x1="16" y1="122" x2="184" y2="122" stroke="var(--line)" stroke-width="2"/>
-              <path d="M100 120 C100 90 82 70 62 42" stroke="var(--ink)" stroke-width="1.6" fill="none"/>
-              <path d="M100 120 C100 88 118 62 138 30" stroke="var(--accent)" stroke-width="1.6" fill="none"/>
-              <ellipse cx="62" cy="38" rx="15" ry="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4" transform="rotate(-28 62 38)"/>
-              <ellipse cx="138" cy="27" rx="17" ry="9" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="1.4" transform="rotate(24 138 27)"/>
+              <rect x="18" y="16" width="164" height="24" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+              <circle cx="32" cy="28" r="6" fill="var(--accent)"/>
+              <rect x="48" y="22" width="42" height="5" rx="2.5" fill="var(--accent)"/>
+              <rect x="48" y="30" width="28" height="3" rx="1.5" fill="var(--ink)" opacity="0.4"/>
+              <rect x="18" y="52" width="50" height="48" rx="10" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+              <rect x="28" y="64" width="30" height="4" rx="2" fill="var(--ink)" opacity="0.2"/>
+              <circle cx="43" cy="82" r="12" fill="none" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="18 6"/>
+              <rect x="76" y="52" width="50" height="48" rx="10" fill="var(--coral-soft)" stroke="var(--coral)" stroke-width="1.4"/>
+              <path d="M92 68 L97 76 L108 66" stroke="var(--coral)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="134" y="52" width="50" height="48" rx="10" fill="var(--paper-raised)" stroke="var(--line)" stroke-width="1.4"/>
+              <rect x="144" y="62" width="30" height="30" rx="6" fill="var(--accent)" opacity="0.85"/>
+              <text x="159" y="81" text-anchor="middle" font-size="10" font-weight="700" fill="white" font-family="Inter">XP</text>
             </svg>
           </div>
           <div class="work-body">
-            <span class="work-tag">Commercial Website</span>
-            <h3>FLAURA</h3>
-            <p>A commercial product website sample, built to show how a product can be presented online with clarity.</p>
-            <a class="work-link" href="https://flaura-three.vercel.app/" target="_blank" rel="noopener noreferrer">
-              Visit site
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/>
-                <path d="M14 4h6v6"/>
-                <path d="M10 14L20 4"/>
-              </svg>
+            <span class="work-tag">Productivity App • Firebase Live</span>
+            <h3>HabitVerse — Gamified Habit Tracker</h3>
+            <p>A full-stack gamified habit tracker with real-time Firebase auth, Firestore sync, streak freezes, XP leveling, focus timer, 90-day heatmap, analytics charts, and a LIVE global leaderboard. Built with cyberpunk neon glassmorphism UI, confetti rewards, and 4 visual themes.</p>
+            <a class="work-link" href="https://habitverse-three.vercel.app/" target="_blank" rel="noopener noreferrer">
+              Visit live app
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/><path d="M14 4h6v6"/><path d="M10 14L20 4"/></svg>
             </a>
           </div>
         </article>
@@ -521,81 +198,24 @@
       </div>
     </div>
   </section>
-
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="contact-title">Let's build something</h2>
-        <p>Reach out by email or WhatsApp — whichever's easiest for you.</p>
-      </div>
+      <div class="section-head"><h2 id="contact-title">Let's build something</h2><p>Reach out by email or WhatsApp — whichever's easiest for you.</p></div>
       <div class="contact-grid">
-        <a class="contact-card" href="mailto:faaizfarrukh55@gmail.com">
-          <span class="contact-icon email" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="5" y="9" width="30" height="22" rx="3"/>
-              <path d="M6 11l14 11 14-11"/>
-            </svg>
-          </span>
-          <span class="contact-text">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">faaizfarrukh55@gmail.com</span>
-          </span>
-        </a>
-        <a class="contact-card" href="https://wa.me/923453264117" target="_blank" rel="noopener noreferrer">
-          <span class="contact-icon whatsapp" aria-hidden="true">
-            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="20" cy="20" r="14"/>
-              <path d="M14 14c1.5 5 6 9.5 12 12"/>
-              <circle cx="14" cy="14" r="2.2" fill="currentColor" stroke="none"/>
-              <circle cx="26" cy="26" r="2.2" fill="currentColor" stroke="none"/>
-            </svg>
-          </span>
-          <span class="contact-text">
-            <span class="contact-label">WhatsApp</span>
-            <span class="contact-value">+92 345 3264117</span>
-          </span>
-        </a>
+        <a class="contact-card" href="mailto:faaizfarrukh55@gmail.com"><span class="contact-icon email" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="30" height="22" rx="3"/><path d="M6 11l14 11 14-11"/></svg></span><span class="contact-text"><span class="contact-label">Email</span><span class="contact-value">faaizfarrukh55@gmail.com</span></span></a>
+        <a class="contact-card" href="https://wa.me/923453264117" target="_blank" rel="noopener noreferrer"><span class="contact-icon whatsapp" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="20" r="14"/><path d="M14 14c1.5 5 6 9.5 12 12"/><circle cx="14" cy="14" r="2.2" fill="currentColor" stroke="none"/><circle cx="26" cy="26" r="2.2" fill="currentColor" stroke="none"/></svg></span><span class="contact-text"><span class="contact-label">WhatsApp</span><span class="contact-value">+92 345 3264117</span></span></a>
       </div>
     </div>
   </section>
-
 </main>
-
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <p>© <span id="year">2026</span> Faaiz Farrukh Farooqui</p>
-    <nav aria-label="Footer">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</footer>
-
+<footer class="site-footer"><div class="wrap footer-inner"><p>© <span id="year">2026</span> Faaiz Farrukh Farooqui</p><nav aria-label="Footer"><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#contact">Contact</a></nav></div></footer>
 <script>
   (function () {
-    var toggle = document.querySelector('.nav-toggle');
-    var nav = document.getElementById('nav-links');
-
-    toggle.addEventListener('click', function () {
-      var isOpen = nav.classList.toggle('is-open');
-      toggle.classList.toggle('is-active', isOpen);
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        nav.classList.remove('is-open');
-        toggle.classList.remove('is-active');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    var yearEl = document.getElementById('year');
-    if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+    var toggle = document.querySelector('.nav-toggle'); var nav = document.getElementById('nav-links');
+    toggle.addEventListener('click', function () { var isOpen = nav.classList.toggle('is-open'); toggle.classList.toggle('is-active', isOpen); toggle.setAttribute('aria-expanded', isOpen? 'true' : 'false'); });
+    nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { nav.classList.remove('is-open'); toggle.classList.remove('is-active'); toggle.setAttribute('aria-expanded', 'false'); }); });
+    var yearEl = document.getElementById('year'); if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
   })();
 </script>
-
 </body>
 </html>
